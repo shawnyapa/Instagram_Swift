@@ -14,6 +14,8 @@ class InstaModel: NSObject {
     var caption: String
     var urlThumbnail: String
     var urlStandardResolution: String
+    var thumbnailImage: UIImage?
+    var standardResolutionImage: UIImage?
     
     override init() {
         name = ""

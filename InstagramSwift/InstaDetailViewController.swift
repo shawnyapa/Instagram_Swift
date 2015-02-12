@@ -21,7 +21,7 @@ class InstaDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.name?.text = instaPhoto?.name
         self.caption?.text = instaPhoto?.caption
-        let imageURL: URLStringConvertible = instaPhoto!.urlThumbnail
+        let imageURL: URLStringConvertible = instaPhoto!.urlStandardResolution
         Alamofire.request(.GET, imageURL).response() {
             (request, _, data, error) in
             if error == nil && data != nil {

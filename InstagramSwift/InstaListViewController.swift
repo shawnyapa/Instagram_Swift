@@ -98,13 +98,21 @@ class InstaListViewController: UIViewController, UITableViewDelegate, UITableVie
             if error == nil && data != nil {
                 let image = UIImage(data: data! as NSData)
                 if request.URLString == instaCell.request?.request.URLString {
-                    instaCell.thumbnailImage?.image = image
-                    instaCell.thumbnailImage?.setNeedsDisplay()
+                    instaModel.thumbnailImage = image
+                    dispatch_async(dispatch_get_main_queue(), {
+                        // DO SOMETHING ON THE MAINTHREAD
+                        //instaCell.thumbnailImage?.image = image
+                        self.setCellImage(instaCell, withInstaModel: instaModel)
+                    })
                 }
             }
         }
         
         return instaCell
+    }
+    
+    func setCellImage(cell: InstaListTableViewCell, withInstaModel instaModel:InstaModel) {
+        cell.thumbnailImage?.image = instaModel.thumbnailImage
     }
 
     func loadAdditionalInstagramPhotos() {
