@@ -43,22 +43,37 @@ class InstaListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func getInstagramPhotosWithAlamofire(instagramUrl: URLStringConvertible, addPhotos:Bool) {
+        if fetchingInProgress == false {
+        fetchingInProgress = true
         Alamofire.request(.GET, instagramUrl)
             .responseJSON { (request, response, JSON, error) in
                 //println(request)
                 //println(response)
                 //println(JSON)
-                //println(error)
-                let photos:[NSDictionary] = (JSON!.valueForKey("data") as [NSDictionary])
-                var tempInstaArray = InstaModel.createInstaModels(photos) as [InstaModel]
-                if addPhotos {
-                    self.instaArray += tempInstaArray
-                    self.instaList?.tableFooterView = nil;
+                println(error)
+                if error == nil && response != nil {
+                    let photos:[NSDictionary] = (JSON!.valueForKey("data") as [NSDictionary])
+                    var tempInstaArray = InstaModel.createInstaModels(photos) as [InstaModel]
+                    if addPhotos {
+                        self.instaArray += tempInstaArray
+                        self.instaList?.tableFooterView = nil
+                    } else {
+                        self.instaArray = tempInstaArray
+                        self.refreshControl?.endRefreshing()
+                    }
+                    self.fetchingInProgress = false
+                    self.instaList?.reloadData()
                 } else {
-                    self.instaArray = tempInstaArray
                     self.refreshControl?.endRefreshing()
+                    self.instaList?.tableFooterView = nil
+                    self.fetchingInProgress = false
+                    var alertview: UIAlertView = UIAlertView.init()
+                    alertview.title = "Connection Error"
+                    alertview.message = "Unable to connect and fetch Instagram Photos"
+                    alertview.cancelButtonIndex = 0
+                    alertview.show()
                 }
-                self.instaList?.reloadData()
+        }
         }
     }
 
