@@ -20,6 +20,7 @@ class InstaDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.navigationItem.title = "Photo Detail"
         self.name?.text = instaPhoto?.name
         self.caption?.text = instaPhoto?.caption
         let imageURL: URLStringConvertible = instaPhoto!.urlStandardResolution

@@ -24,6 +24,7 @@ class InstaListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Popular Photos"
         refreshControl = UIRefreshControl.init()
         refreshControl?.addTarget(self, action:"onRefresh", forControlEvents:UIControlEvents.ValueChanged)
         self.instaList?.insertSubview(self.refreshControl!, atIndex: 0)

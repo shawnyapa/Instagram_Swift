@@ -16,6 +16,7 @@ class FullScreenPhotoViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Photo Zoom"
         photoView?.image = photoImage!
         scrollView?.contentSize = photoView!.image!.size
         // Do any additional setup after loading the view.
