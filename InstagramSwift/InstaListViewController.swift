@@ -18,13 +18,13 @@ class InstaListViewController: UIViewController, UITableViewDelegate, UITableVie
     var selectedPhoto: InstaModel?
     //var instagramUrlString = "https://api.instagram.com/v1/media/popular?client_id=2c20e447eeed401ea9380d62d8f3b6cf"
     var instagramUrlString: URLStringConvertible = "https://api.instagram.com/v1/users/22836073/media/recent/?client_id=2c20e447eeed401ea9380d62d8f3b6cf" // Miami Heat UserId includes nextUrl Pagination
-    var nextUrl: NSString?
+    var nextUrl: String?
     var fetchingInProgress=false
     var selectedInstaPhoto: InstaModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshControl = UIRefreshControl()
+        refreshControl = UIRefreshControl.init()
         refreshControl?.addTarget(self, action:"onRefresh", forControlEvents:UIControlEvents.ValueChanged)
         self.instaList?.insertSubview(self.refreshControl!, atIndex: 0)
         let placeHolderImageString = "placeholderImage"
@@ -38,7 +38,7 @@ class InstaListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func onRefresh() {
-        println("Refreshing")
+        //println("Refreshing")
         getInstagramPhotosWithAlamofire(instagramUrlString, addPhotos: false)
     }
     
@@ -50,19 +50,22 @@ class InstaListViewController: UIViewController, UITableViewDelegate, UITableVie
                 //println(request)
                 //println(response)
                 //println(JSON)
-                println(error)
+                //println(error)
                 if error == nil && response != nil {
+                    let pagination: NSDictionary = (JSON!.valueForKey("pagination") as NSDictionary)
+                    self.nextUrl = (pagination.valueForKey("next_url") as String)
                     let photos:[NSDictionary] = (JSON!.valueForKey("data") as [NSDictionary])
                     var tempInstaArray = InstaModel.createInstaModels(photos) as [InstaModel]
                     if addPhotos {
                         self.instaArray += tempInstaArray
+                        var arrayTest: InstaModel = self.instaArray[0]
                         self.instaList?.tableFooterView = nil
                     } else {
                         self.instaArray = tempInstaArray
                         self.refreshControl?.endRefreshing()
                     }
-                    self.fetchingInProgress = false
                     self.instaList?.reloadData()
+                    self.fetchingInProgress = false
                 } else {
                     self.refreshControl?.endRefreshing()
                     self.instaList?.tableFooterView = nil
@@ -107,7 +110,6 @@ class InstaListViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         }
-        
         return instaCell
     }
     
@@ -117,7 +119,8 @@ class InstaListViewController: UIViewController, UITableViewDelegate, UITableVie
 
     func loadAdditionalInstagramPhotos() {
         showFooterLoadingView()
-        getInstagramPhotosWithAlamofire(instagramUrlString, addPhotos: true)
+        
+        getInstagramPhotosWithAlamofire(nextUrl!, addPhotos: true)
     }
     
     func showFooterLoadingView() {

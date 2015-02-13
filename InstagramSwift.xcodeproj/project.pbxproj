@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		290580C31A8BE4B40030047D /* InstaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290580C21A8BE4B40030047D /* InstaDetailViewController.swift */; };
 		2941C31D1A8B32D200E53B8B /* InstaListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941C31C1A8B32D200E53B8B /* InstaListTableViewCell.swift */; };
+		294AF81B1A8DB57D008C853E /* FullScreenPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294AF81A1A8DB57D008C853E /* FullScreenPhotoViewController.swift */; };
 		29994EC21A8A76A90093D6AF /* InstaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29994EC11A8A76A90093D6AF /* InstaListViewController.swift */; };
 		29994EC41A8A76FE0093D6AF /* InstaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29994EC31A8A76FE0093D6AF /* InstaModel.swift */; };
 		29AEAFDC1A8A75200073FAD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AEAFDB1A8A75200073FAD9 /* AppDelegate.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		290580C21A8BE4B40030047D /* InstaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstaDetailViewController.swift; sourceTree = "<group>"; };
 		2941C31C1A8B32D200E53B8B /* InstaListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstaListTableViewCell.swift; sourceTree = "<group>"; };
+		294AF81A1A8DB57D008C853E /* FullScreenPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenPhotoViewController.swift; sourceTree = "<group>"; };
 		29994EC11A8A76A90093D6AF /* InstaListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstaListViewController.swift; sourceTree = "<group>"; };
 		29994EC31A8A76FE0093D6AF /* InstaModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstaModel.swift; sourceTree = "<group>"; };
 		29AEAFD61A8A75200073FAD9 /* InstagramSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +105,7 @@
 				29994EC11A8A76A90093D6AF /* InstaListViewController.swift */,
 				2941C31C1A8B32D200E53B8B /* InstaListTableViewCell.swift */,
 				290580C21A8BE4B40030047D /* InstaDetailViewController.swift */,
+				294AF81A1A8DB57D008C853E /* FullScreenPhotoViewController.swift */,
 				29994EC31A8A76FE0093D6AF /* InstaModel.swift */,
 				29AEAFDF1A8A75200073FAD9 /* Main.storyboard */,
 				29AEAFE21A8A75200073FAD9 /* Images.xcassets */,
@@ -300,6 +303,7 @@
 				2941C31D1A8B32D200E53B8B /* InstaListTableViewCell.swift in Sources */,
 				29AEAFDC1A8A75200073FAD9 /* AppDelegate.swift in Sources */,
 				290580C31A8BE4B40030047D /* InstaDetailViewController.swift in Sources */,
+				294AF81B1A8DB57D008C853E /* FullScreenPhotoViewController.swift in Sources */,
 				29994EC41A8A76FE0093D6AF /* InstaModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

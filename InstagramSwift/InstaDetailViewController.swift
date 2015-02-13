@@ -15,6 +15,7 @@ class InstaDetailViewController: UIViewController {
     @IBOutlet weak var name: UILabel?
     @IBOutlet weak var imageViewStandardResolution: UIImageView?
     @IBOutlet weak var caption: UITextView?
+    var image: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +26,16 @@ class InstaDetailViewController: UIViewController {
         Alamofire.request(.GET, imageURL).response() {
             (request, _, data, error) in
             if error == nil && data != nil {
-                let image = UIImage(data: data! as NSData)
-                self.imageViewStandardResolution?.image = image
+                //let image = UIImage(data: data! as NSData)
+                self.image = UIImage(data: data! as NSData)
+                self.imageViewStandardResolution?.image = self.image
             }
         }
+    }
+    
+    @IBAction func showFullPhotoWithZoom(sender: AnyObject) {
+        
+        self.performSegueWithIdentifier("showFullPhotoWithZoom", sender: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,14 +44,18 @@ class InstaDetailViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showFullPhotoWithZoom" {
+            var fullScreenPhotoVC: FullScreenPhotoViewController = segue.destinationViewController as FullScreenPhotoViewController
+            fullScreenPhotoVC.photoImage = image
+        }
     }
-    */
+    
 
 }
